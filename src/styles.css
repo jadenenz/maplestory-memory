@@ -1,0 +1,27 @@
+body {
+    background: no-repeat url('https://i.pinimg.com/originals/aa/46/be/aa46beaee67d41a7e5fb027b1ffca0f1.png');
+    color: white;
+}
+
+.title {
+    margin: auto;
+}
+
+.card--container > img {
+    height: 218px;
+    width: 190px;
+}
+
+.cards--container {
+    display: flex;
+}
+
+.card--container {
+    background: #3361FF;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.score--best {
+    margin-left: 8px;
+}
