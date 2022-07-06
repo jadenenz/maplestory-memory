@@ -6,9 +6,12 @@ function App() {
 
   const [score, setScore] = React.useState(0)
 
+  const [clickedCards, setClickedCards] = React.useState([])
+
   const shuffleCards = () => {
     cardData.sort((a,b) => 0.5 - Math.random());
   }
+
 
   useEffect(() => {
     shuffleCards()
@@ -16,7 +19,7 @@ function App() {
 
   const cards = cardData.map(card => {
     return (
-      <div className="card--container">
+      <div onClick={addClickedCard(card.id)} key={card.id} className="card--container">
         <h2>{card.name}</h2>
         <img src={card.img} alt="maplestory mob"/>
       </div>
@@ -27,6 +30,10 @@ function App() {
     setScore(prevScore => {
       return prevScore + 1
     })
+  }
+
+  function addClickedCard(id) {
+    
   }
 
   return (
