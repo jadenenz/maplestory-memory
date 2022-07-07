@@ -8,8 +8,20 @@ function App() {
 
   const [clickedCards, setClickedCards] = React.useState([])
 
+  const [bestScore, setBestScore] = React.useState(0)
+
   const shuffleCards = () => {
     cardData.sort((a,b) => 0.5 - Math.random());
+  }
+  
+  const resetGame = () => {
+    let currentScore = score
+    if (currentScore > bestScore){
+      setBestScore(currentScore)
+    }
+    setScore(0)
+    setClickedCards([])
+    alert('Reset game!')
   }
 
 
@@ -19,7 +31,7 @@ function App() {
 
   const cards = cardData.map(card => {
     return (
-      <div onClick={addClickedCard(card.id)} key={card.id} className="card--container">
+      <div onClick={() => {addClickedCard(card.id)}} key={card.id} className="card--container">
         <h2>{card.name}</h2>
         <img src={card.img} alt="maplestory mob"/>
       </div>
@@ -33,7 +45,15 @@ function App() {
   }
 
   function addClickedCard(id) {
-    
+    if (clickedCards.includes(id)){
+      resetGame()
+    } else {
+      setClickedCards(prevClickedCards => {
+        return [...prevClickedCards, id]
+      })
+      upScore()
+      console.log(clickedCards)
+    }
   }
 
   return (
@@ -41,8 +61,7 @@ function App() {
       <h1 className="title">Maplestory Memory</h1>
       <div className="score--container">
         <span className="score--current">Score: {score}</span>
-        <span className="score--best">Best score: todo</span>
-        <button onClick={upScore}>Up Score</button>
+        <span className="score--best">Best score: {bestScore}</span>
       </div>
       <div className="cards--container">
       {cards}
